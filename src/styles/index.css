@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, sans-serif;
+  background: #f4f5f5;
+  color: #333333;
+}
+
+#root {
+  min-height: 100vh;
+}
