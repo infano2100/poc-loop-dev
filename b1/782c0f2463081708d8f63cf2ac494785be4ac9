@@ -1,0 +1,75 @@
+vite.config.ts
+  s_b40c83075af6f1::t_5eae96fc3831d3 1-12
+  s_b40c83075af6f1::t_58c7ec9060bdff 13
+package.json
+  s_b40c83075af6f1::t_e456e74609e275 19-30
+  s_b40c83075af6f1::t_1f408222e460b1 1-18,31-32
+.env.example
+  s_b40c83075af6f1::t_25f334f160d70d 1-3
+.gitignore
+  s_b40c83075af6f1::t_25f334f160d70d 25
+  s_b40c83075af6f1::t_cd30bfb7ac382e 1-24
+.github/workflows/trello-sync.yml
+  s_b40c83075af6f1::t_25f334f160d70d 1-36
+.github/workflows/ci.yml
+  s_b40c83075af6f1::t_25f334f160d70d 1-20
+src/test-setup.ts
+  s_b40c83075af6f1::t_5eae96fc3831d3 1
+.claude/commands/ship.md
+  s_b40c83075af6f1::t_25f334f160d70d 1-20
+scripts/setup-wizard.sh
+  s_b40c83075af6f1::t_0b419c7be577c0 1-80
+src/App.test.tsx
+  s_b40c83075af6f1::t_5eae96fc3831d3 1-7
+tsconfig.app.json
+  s_b40c83075af6f1::t_5eae96fc3831d3 7
+  s_b40c83075af6f1::t_ca0433604ac5c0 1-6,8-26
+.claude/commands/fix-bug.md
+  s_b40c83075af6f1::t_25f334f160d70d 1-13
+.claude/commands/plan.md
+  s_b40c83075af6f1::t_25f334f160d70d 1-15
+.oxlintrc.json
+  s_b40c83075af6f1::t_03e2a5ce3bc85e 1-8
+README.md
+  s_b40c83075af6f1::t_4179f6c0ccd8c8 1-32
+index.html
+  s_b40c83075af6f1::t_a09e1177953898 1-13
+package-lock.json
+  s_b40c83075af6f1::t_dea7f1e751d457 1-2782
+public/favicon.svg
+  s_b40c83075af6f1::t_4c4dd16335e667 1
+public/icons.svg
+  s_b40c83075af6f1::t_950f2905df8978 1-24
+src/App.css
+  s_b40c83075af6f1::t_decfb3cf4a74b4 1-184
+src/App.tsx
+  s_b40c83075af6f1::t_6dafac08f32759 1-122
+src/assets/react.svg
+  s_b40c83075af6f1::t_8283f2ab4c9a08 1
+src/assets/vite.svg
+  s_b40c83075af6f1::t_2c181e62f260f9 1
+src/index.css
+  s_b40c83075af6f1::t_bd4e33f2f45bcb 1-111
+src/main.tsx
+  s_b40c83075af6f1::t_b917694d9bca56 1-10
+tsconfig.json
+  s_b40c83075af6f1::t_563cbddeb49d6b 1-7
+tsconfig.node.json
+  s_b40c83075af6f1::t_3b4dd807d86773 1-23
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "b1782c0f2463081708d8f63cf2ac494785be4ac9",
+  "prompts": {},
+  "sessions": {
+    "s_b40c83075af6f1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1eb1d552-f806-4dfc-a0c2-088a6daa7aaf",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "kitikorn.kha <kitikorn.kha@axonstech.com>"
+    }
+  }
+}
