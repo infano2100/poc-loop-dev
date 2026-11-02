@@ -1,0 +1,54 @@
+docs/requirements.md
+  s_b40c83075af6f1::t_6f44411ecbbc21 1-94
+CLAUDE.md
+  s_b40c83075af6f1::t_d06e127cf22793 53-67
+  s_b40c83075af6f1::t_a0e42bb1581574 42-49
+  s_b40c83075af6f1::t_b3648fdf76835b 25
+  s_b40c83075af6f1::t_ee8a29ff17b41b 12
+  s_b40c83075af6f1::t_d1407dcd33f5e5 84
+.gitignore
+  s_b40c83075af6f1::t_cd20c2644394af 26-29
+.claude/commands/fix-bug.md
+  s_b40c83075af6f1::t_fd0d32be639891 13-15
+scripts/trello.sh
+  s_b40c83075af6f1::t_fd0d32be639891 58-61,63
+src/App.test.tsx
+  s_b40c83075af6f1::t_03d69e20c7b777 1,8-13
+  s_b40c83075af6f1::t_8d63881476aa44 14
+.github/workflows/e2e.yml
+  s_b40c83075af6f1::t_dc5a891bd584c4 1-26
+.github/workflows/unit-tests.yml
+  s_b40c83075af6f1::t_dc5a891bd584c4 1-23
+.claude/commands/ship.md
+  s_b40c83075af6f1::t_fd0d32be639891 2,10-30
+e2e/smoke.spec.ts
+  s_b40c83075af6f1::t_cd20c2644394af 1-15
+.claude/commands/plan.md
+  s_b40c83075af6f1::t_4f9ae8ed88296c 15
+  s_b40c83075af6f1::t_fd0d32be639891 2,7-8,10,13-14
+package.json
+  s_b40c83075af6f1::t_395ecbaade12f4 21,29
+  s_b40c83075af6f1::t_cd20c2644394af 12-14
+playwright.config.ts
+  s_b40c83075af6f1::t_cd20c2644394af 1-14
+vite.config.ts
+  s_b40c83075af6f1::t_cd20c2644394af 12-32
+package-lock.json
+  s_b40c83075af6f1::t_ef63ff32485ca2 15,23,86-95,106-121,132-155,712-727,1524-1575,1657-1675,2225-2236,2369-2397,2624-2633
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.3",
+  "base_commit_sha": "b71795f74b852565e252cb655cec974aa4ce04c9",
+  "prompts": {},
+  "sessions": {
+    "s_b40c83075af6f1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "1eb1d552-f806-4dfc-a0c2-088a6daa7aaf",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "kitikorn.kha <kitikorn.kha@axonstech.com>"
+    }
+  }
+}
