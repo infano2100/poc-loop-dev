@@ -1,0 +1,36 @@
+name: Trello sync
+on:
+  pull_request:
+    types: [opened, reopened, closed]
+
+env:
+  TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+  TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+  TRELLO_BOARD_ID: ${{ secrets.TRELLO_BOARD_ID }}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move card
+        env:
+          BRANCH: ${{ github.head_ref }}
+          MERGED: ${{ github.event.pull_request.merged }}
+          ACTION: ${{ github.event.action }}
+        run: |
+          # branch: feat/<shortLink>-<slug> or fix/<shortLink>-<slug>
+          SHORT=$(echo "$BRANCH" | sed -nE 's#^(feat|fix)/([A-Za-z0-9]{8})-.*#\2#p')
+          [ -n "$SHORT" ] || { echo "no shortLink in branch '$BRANCH'"; exit 0; }
+          if [ "$ACTION" = "closed" ]; then
+            [ "$MERGED" = "true" ] || exit 0
+            TARGET=Done
+          else
+            TARGET="In Review"
+          fi
+          AUTH="Authorization: OAuth oauth_consumer_key=\"$TRELLO_KEY\", oauth_token=\"$TRELLO_TOKEN\""
+          LIST_ID=$(curl -sSf -H "$AUTH" "https://api.trello.com/1/boards/$TRELLO_BOARD_ID/lists" \
+            | jq -r --arg n "$TARGET" '.[] | select(.name==$n) | .id')
+          [ -n "$LIST_ID" ] || { echo "list '$TARGET' not found"; exit 1; }
+          curl -sSf -X PUT -H "$AUTH" -G "https://api.trello.com/1/cards/$SHORT" \
+            --data-urlencode "idList=$LIST_ID" >/dev/null
+          echo "moved $SHORT -> $TARGET"
