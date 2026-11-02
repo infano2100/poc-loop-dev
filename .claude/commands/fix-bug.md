@@ -10,4 +10,6 @@ If the Bug list is empty, say so and stop.
    If there is no way to reproduce, comment asking for details on the card and stop.
 2. Move the card to `In Progress`; create `fix/<shortLink>-<slug>`.
 3. Reproduce the bug with a failing test first, find the root cause, then fix it with the smallest change.
-4. From here follow `/ship` steps 5-9 (local checks, commit with `[trello:<shortLink>]`, PR, CI loop capped at 3, no merge).
+   If the fix needs a DB change, stop at the DB gate from `/ship` step 2.
+4. From here follow `/ship` steps 6-12 (diagram if schema changed, local checks, Playwright and screenshots
+   for UI bugs, commit with `[trello:<shortLink>]`, PR, CI loop capped at 3, no merge).

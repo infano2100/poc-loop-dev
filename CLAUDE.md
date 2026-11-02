@@ -9,6 +9,7 @@ This repo is a proof-of-concept for an AI-driven delivery loop:
 - CI: GitHub Actions (`.github/workflows/ci.yml`)
 - Board: Trello, accessed ONLY through `./scripts/trello.sh`
 - Design: PNG exports in `docs/design/` (Figma frames exported manually)
+- Tests: vitest + Testing Library (unit), Playwright (UI, Chromium)
 
 ## Source of truth
 - Requirements: `docs/requirements.md`
@@ -21,7 +22,7 @@ This repo is a proof-of-concept for an AI-driven delivery loop:
 `Backlog → Todo → In Progress → In Review → Done`
 Side lists: `Bug` (human opens bug cards here), `Blocked` (Claude parks work it cannot finish).
 
-Labels: `feature`, `task`, `bug`, `ci-fix`.
+Labels: `feature`, `task`, `bug`, `ci-fix`, `needs-decision`.
 
 Card identity = Trello **shortLink** (8 chars, from the card URL `trello.com/c/<shortLink>/...`).
 
@@ -38,9 +39,31 @@ Card identity = Trello **shortLink** (8 chars, from the card URL `trello.com/c/<
 - NEVER edit `.github/workflows/*` to make a failing check pass (no skipping tests,
   no `continue-on-error`, no deleting tests). Fix the code instead.
 - NEVER read or print `.env` contents or tokens.
-- Run local checks before every push: `npm run lint && npm run typecheck && npm test -- --run && npm run build`
+- Run local checks before every push: `npm run lint && npm run typecheck && npm run test:coverage && npm run build`
+  (plus `npm run e2e` when the card changes UI).
+- Every file under `src/` with logic needs a co-located `*.test.ts(x)` (exempt: `main.tsx`, type-only
+  files, fixtures, config, re-export-only `index.ts`). Coverage is enforced per file at 80%.
+- UI cards: after implementing, write Playwright specs, run them, and attach the screenshots to the
+  Trello card with `./scripts/trello.sh attach` plus a comment saying what each shows, before `In Review`.
+- New workflows (`unit-tests.yml`, the `e2e` job) are written only when the user asks; the user reviews
+  and merges them.
 - CI fix attempts are capped at **3 per card**. After the 3rd failure: stop, move the card
   to `Blocked`, comment the failing step + your diagnosis, and report to the user.
+
+## Database changes (decision task)
+Touching the DB means adding or changing tables, columns, indexes, relations, migrations, or
+switching DB or ORM. Before any such change:
+1. Stop. Do not write schema, migration or ORM code yet.
+2. Comment the options on the card (pros, cons, recommendation).
+3. Move the card to `Blocked` and add the label `needs-decision`.
+4. Wait for the user's answer in chat, then continue.
+
+Every schema change also regenerates the ER diagram with the `diagram-design` skill at
+`docs/db/er-diagram.html` (+ `.svg`, `.png` via `export-diagram`). Commit it in the same PR and
+mention it in the PR body.
+
+## Phases
+`docs/requirements.md` marks one phase as current. `/plan` plans only that phase.
 
 ## When to stop and ask the user
 - Requirement or design contradicts itself, or a decision is hard to reverse
@@ -58,4 +81,5 @@ Card identity = Trello **shortLink** (8 chars, from the card URL `trello.com/c/<
 ./scripts/trello.sh move <shortLink> "<List>"
 ./scripts/trello.sh comment <shortLink> "<text>"
 ./scripts/trello.sh label <shortLink> <label>
+./scripts/trello.sh attach <shortLink> <file>     # attach an image/file to the card
 ```

@@ -55,6 +55,10 @@ case "$cmd" in
     req POST "/cards/$1/actions/comments" --data-urlencode "text=$2" >/dev/null && echo "commented $1" ;;
   label)
     req POST "/cards/$1/idLabels" --data-urlencode "value=$(label_id "$2")" >/dev/null && echo "labeled $1 $2" ;;
+  attach)
+    [[ -f "$2" ]] || { echo "File not found: $2" >&2; exit 1; }
+    curl -sSf -X POST -H "$AUTH" -H "Accept: application/json" \
+      -F "file=@$2" -F "name=$(basename "$2")" "$API/cards/$1/attachments" | jq -r '"attached \(.name)"' ;;
   *)
-    echo "usage: trello.sh lists|cards <list>|get <id>|create <list> <title> [desc] [label]|move <id> <list>|comment <id> <text>|label <id> <label>"; exit 1 ;;
+    echo "usage: trello.sh lists|cards <list>|get <id>|create <list> <title> [desc] [label]|move <id> <list>|comment <id> <text>|label <id> <label>|attach <id> <file>"; exit 1 ;;
 esac
